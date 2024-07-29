@@ -17,7 +17,7 @@ namespace Bulky.DataAccess.Repository
         public Repository(ApplicationDbContext db)
         {
             _db = db;
-            this.dbSet=_db.Set<T>();
+            this.dbSet = _db.Set<T>();
             _db.Products.Include(u => u.Category).Include(u => u.CategoryId);
 
 
@@ -27,10 +27,20 @@ namespace Bulky.DataAccess.Repository
             dbSet.Add(entity);
         }
 
-        public T Get(Expression<Func<T, bool>> filter, string? inclueProperties = null)
+        public T Get(Expression<Func<T, bool>> filter, string? inclueProperties = null, bool tracked = false)
         {
-            IQueryable<T> query = dbSet;
-            query =query.Where(filter);
+            IQueryable<T> query;
+
+            if (tracked)
+            {
+                query = dbSet;
+            }
+            else
+            {
+                query = dbSet.AsNoTracking();
+
+            }
+            query = query.Where(filter);
             if (!string.IsNullOrEmpty(inclueProperties))
             {
                 foreach (var includeProp in inclueProperties
@@ -42,9 +52,16 @@ namespace Bulky.DataAccess.Repository
             return query.FirstOrDefault();
         }
         //Category, CoverType
-        public IEnumerable<T> GetAll(string? inclueProperties = null)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter, string? inclueProperties = null)
         {
             IQueryable<T> query = dbSet;
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+
+            }
+
             if (!string.IsNullOrEmpty(inclueProperties))
             {
                 foreach (var includeProp in inclueProperties
