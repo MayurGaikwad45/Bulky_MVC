@@ -9,15 +9,11 @@ namespace Bulky.DataAccess.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-
+            
         }
-        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
         public DbSet<Category> Category { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Company> Companies { get; set; }
-        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
-        public DbSet<OrderHeader> OrderHeaders { get; set; }
-        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<Product> Products{ get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,55 +24,6 @@ namespace Bulky.DataAccess.Data
                 new Category { Id = 2, Name = "Action", DisplayOrder = 2 },
                 new Category { Id = 3, Name = "Old", DisplayOrder = 3 },
                 new Category { Id = 4, Name = "History", DisplayOrder = 4 }
-                );
-
-            modelBuilder.Entity<Company>().HasData(
-                new Company { Id = 1, Name = "Tech Solution", StreetAddress="123 Tech St", City="Tech City",
-                    PostalCode="400099", State="Tech", PhoneNumber="1234567894" },
-                new Company
-                {
-                    Id = 2,
-                    Name = "Vid",
-                    StreetAddress="123 asd St", 
-                    City="mum",
-                    PostalCode="400037",
-                    State="Maharashtra",
-                    PhoneNumber="1230987654"
-
-                },
-                 new Company
-                 {
-                     Id = 3,
-                     Name = "Spark",
-                     StreetAddress = "998 Akr St",
-                     City = "Spark City",
-                     PostalCode = "240037",
-                     State = "Spark State",
-                     PhoneNumber = "4440987654"
-
-                 },
-                  new Company
-                  {
-                      Id = 4,
-                      Name = "Reader Club",
-                      StreetAddress = "789 Khd St",
-                      City = "New State",
-                      PostalCode = "500037",
-                      State = "Jammu",
-                      PhoneNumber = "8790987654"
-
-                  },
-                   new Company
-                   {
-                       Id = 5,
-                       Name = "Stark",
-                       StreetAddress = "450 HotDog St",
-                       City = "New York",
-                       PostalCode = "90037",
-                       State = "USA",
-                       PhoneNumber = "60987654"
-
-                   }
                 );
 
             modelBuilder.Entity<Product>().HasData(
