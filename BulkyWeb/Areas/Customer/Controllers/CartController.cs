@@ -132,7 +132,7 @@ namespace BulkyWeb.Areas.Customer.Controllers
             {
                 //regular customer
                 //stripe Logic
-                var domain = "https://localhost:7134/";
+                var domain = Request.Scheme + "://" + Request.Host.Value + "/";
                 var options = new Stripe.Checkout.SessionCreateOptions
                 {
 

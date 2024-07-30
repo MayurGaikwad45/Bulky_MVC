@@ -141,7 +141,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
             OrderVM.OrderDetail = _unitOfWork.OrderDetail.GetAll(u => u.OrderHeader.Id == OrderVM.OrderHeader.Id, inclueProperties: "Product");
 
             //stripe Logic
-            var domain = "https://localhost:7134/";
+            var domain = Request.Scheme+"://"+Request.Host.Value+"/";
             var options = new Stripe.Checkout.SessionCreateOptions
             {
 
