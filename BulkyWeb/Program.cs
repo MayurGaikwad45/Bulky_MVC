@@ -42,6 +42,12 @@ builder.Services.AddAuthentication().AddFacebook(options =>
     options.AppSecret = "f91df65e8a3742b5d2996d1acab4254a";
 });
 
+builder.Services.AddAuthentication().AddMicrosoftAccount(options =>
+{
+    options.ClientId = "2451ccd7-3743-415e-b1bd-76711806c23c";
+    options.ClientSecret = "paU8Q~wuP-blUQUYCIr9CsZoGVurIbFSEGB7rdBu";
+});
+
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();

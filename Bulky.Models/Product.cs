@@ -45,9 +45,11 @@ namespace Bulky.Models
 
         [ValidateNever]
         public Category Category { get; set; }
-        [ValidateNever]
 
-        public String ImageURL { get; set; }
+        [ValidateNever]
+        public List<ProductImage> ProductImages { get; set; }
+
+
 
     }
 }
